@@ -1,0 +1,66 @@
+<html>
+<head>
+
+<title>Groovy Goodness: Enhancements for Iterable Implementations</title>
+
+<script language="javascript" src="scripts/shCore.js"></script> 
+<script language="javascript" src="scripts/shLegacy.js"></script> 
+<script language="javascript" src="scripts/shBrushJava.js"></script> 
+<script language="javascript" src="scripts/shBrushXml.js"></script> 
+<script language="javascript" src="scripts/shBrushJScript.js"></script> 
+<script language="javascript" src="scripts/shBrushGroovy.js"></script> 
+<script language="javascript" src="scripts/shBrushPlain.js"></script> 
+<script language="javascript" src="scripts/shBrushBash.js"></script> 
+ 
+<link href="styles/reset.css" rel="stylesheet" type="text/css" />
+<link href="styles/shCore.css" rel="stylesheet" type="text/css" />
+<link type="text/css" rel="stylesheet" href="styles/shThemeRDark.css"/>
+<link href="styles/blog.css" rel="stylesheet" type="text/css" />
+
+</head>
+<body>
+
+<a href="index.html">Back to index</a>
+
+<h3 class="post-title">Groovy Goodness: Enhancements for Iterable Implementations</h3>
+
+<div class="post">
+<p>Since Groovy 2.2 a lot of the useful methods that are added to the collection API interfaces are also available for classes implementing the <code>Iterable</code> interface:</p><pre class="brush:groovy">// Counter is implementation for Iterable interface.
+class Counter implements Iterable {
+    Integer maxValue
+    private Integer counter = 0
+    
+    // Return new Iterator instance.
+    @Override
+    Iterator iterator() {
+        [hasNext: { counter <= maxValue }, 
+         next: { counter++ }] as Iterator
+    }
+    
+}
+
+assert counter.sum() == 55
+assert counter.min() == 0
+assert counter.max() == 10
+assert counter.count(2) == 1
+assert counter.count { it % 2 == 0 } == 6
+assert counter.collectMany { [it * 2] } == [0,2,4,6,8,10,12,14,16,18,20]
+assert counter.groupBy { it % 4 == 0 ? 'fours' : 'noneFours' } == [fours: [0,4,8], noneFours: [1,2,3,5,6,7,9,10]]
+
+private getCounter() {
+    new Counter(maxValue: 10)
+}
+</pre>
+</div>
+
+<script language="javascript"> 
+SyntaxHighlighter.config.bloggerMode = true;
+SyntaxHighlighter.config.clipboardSwf = 'scripts/clipboard.swf';
+SyntaxHighlighter.defaults['first-line'] = 0;
+SyntaxHighlighter.defaults['auto-links'] = false;
+SyntaxHighlighter.all();
+dp.SyntaxHighlighter.HighlightAll('code');
+</script>
+
+</body>
+</html>

@@ -1,0 +1,66 @@
+<html>
+<head>
+
+<title>Groovy Goodness: Create Class Instance Dynamically</title>
+
+<script language="javascript" src="scripts/shCore.js"></script> 
+<script language="javascript" src="scripts/shLegacy.js"></script> 
+<script language="javascript" src="scripts/shBrushJava.js"></script> 
+<script language="javascript" src="scripts/shBrushXml.js"></script> 
+<script language="javascript" src="scripts/shBrushJScript.js"></script> 
+<script language="javascript" src="scripts/shBrushGroovy.js"></script> 
+<script language="javascript" src="scripts/shBrushPlain.js"></script> 
+<script language="javascript" src="scripts/shBrushBash.js"></script> 
+ 
+<link href="styles/reset.css" rel="stylesheet" type="text/css" />
+<link href="styles/shCore.css" rel="stylesheet" type="text/css" />
+<link type="text/css" rel="stylesheet" href="styles/shThemeRDark.css"/>
+<link href="styles/blog.css" rel="stylesheet" type="text/css" />
+
+</head>
+<body>
+
+<a href="index.html">Back to index</a>
+
+<h3 class="post-title">Groovy Goodness: Create Class Instance Dynamically</h3>
+
+<div class="post">
+<p>The <code>Class</code> method in Groovy has a <code>newInstance()</code> to dynamically create a new instance of a given class. We can use an Object array or Map as argument if we want to invoke the non-default constructor of the class.</p>
+<pre class="brush:groovy">
+class Blog {
+    String name
+    String subject
+    
+    Blog() {}
+    
+    Blog(String name, String subject) {
+        this.name = name
+        this.subject = subject
+    }
+}
+
+def blog = Blog.newInstance()
+assert !blog.name, 'Name has no value'
+assert !blog.subject, 'Subject has no value'
+
+def blog2 = Blog.newInstance(['mrhaki', 'Groovy'] as Object[])
+assert 'mrhaki' == blog2.name
+assert 'Groovy' == blog2.subject
+
+def blog3 = Blog.newInstance([name:'mrhaki', subject: 'Groovy'])
+assert 'mrhaki' == blog3.name
+assert 'Groovy' == blog3.subject
+</pre
+</div>
+
+<script language="javascript"> 
+SyntaxHighlighter.config.bloggerMode = true;
+SyntaxHighlighter.config.clipboardSwf = 'scripts/clipboard.swf';
+SyntaxHighlighter.defaults['first-line'] = 0;
+SyntaxHighlighter.defaults['auto-links'] = false;
+SyntaxHighlighter.all();
+dp.SyntaxHighlighter.HighlightAll('code');
+</script>
+
+</body>
+</html>

@@ -1,0 +1,67 @@
+<html>
+<head>
+
+<title>Groovy Goodness: Inherit Constructors From Parent Classes</title>
+
+<script language="javascript" src="scripts/shCore.js"></script> 
+<script language="javascript" src="scripts/shLegacy.js"></script> 
+<script language="javascript" src="scripts/shBrushJava.js"></script> 
+<script language="javascript" src="scripts/shBrushXml.js"></script> 
+<script language="javascript" src="scripts/shBrushJScript.js"></script> 
+<script language="javascript" src="scripts/shBrushGroovy.js"></script> 
+<script language="javascript" src="scripts/shBrushPlain.js"></script> 
+<script language="javascript" src="scripts/shBrushBash.js"></script> 
+ 
+<link href="styles/reset.css" rel="stylesheet" type="text/css" />
+<link href="styles/shCore.css" rel="stylesheet" type="text/css" />
+<link type="text/css" rel="stylesheet" href="styles/shThemeRDark.css"/>
+<link href="styles/blog.css" rel="stylesheet" type="text/css" />
+
+</head>
+<body>
+
+<a href="index.html">Back to index</a>
+
+<h3 class="post-title">Groovy Goodness: Inherit Constructors From Parent Classes</h3>
+
+<div class="post">
+<p>We have a new transformation annotation in Groovy 1.7.3 to safe us a lot of typing when we define new classes that extend from parent classes with multiple constructors: <code>@InheritConstructors</code>. When we apply this transformation to our class we automatically get all constructors from the super class. This is very useful if we for example extend from <code>java.lang.Exception</code>, because otherwise we would have to define four constructors ourselves. The transformation adds these constructors for us in our class file. This works also for our own created classes.</p>
+<pre class="brush:groovy">
+import groovy.transform.InheritConstructors
+
+@InheritConstructors
+class MyException extends Exception {
+}
+
+def e = new MyException()
+def e1 = new MyException('message')   // Other constructors are available.
+assert 'message' == e1.message
+
+
+class Person {
+    String name
+    
+    Person(String name) {
+        this.name = name
+    }
+}
+
+@InheritConstructors
+class Child extends Person {}
+
+def child = new Child('Liam')
+assert 'Liam' == child.name
+</pre
+</div>
+
+<script language="javascript"> 
+SyntaxHighlighter.config.bloggerMode = true;
+SyntaxHighlighter.config.clipboardSwf = 'scripts/clipboard.swf';
+SyntaxHighlighter.defaults['first-line'] = 0;
+SyntaxHighlighter.defaults['auto-links'] = false;
+SyntaxHighlighter.all();
+dp.SyntaxHighlighter.HighlightAll('code');
+</script>
+
+</body>
+</html>

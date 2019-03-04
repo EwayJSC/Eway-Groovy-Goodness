@@ -1,0 +1,58 @@
+<html>
+<head>
+
+<title>Groovy Goodness: Process Map Entries in Reverse</title>
+
+<script language="javascript" src="scripts/shCore.js"></script> 
+<script language="javascript" src="scripts/shLegacy.js"></script> 
+<script language="javascript" src="scripts/shBrushJava.js"></script> 
+<script language="javascript" src="scripts/shBrushXml.js"></script> 
+<script language="javascript" src="scripts/shBrushJScript.js"></script> 
+<script language="javascript" src="scripts/shBrushGroovy.js"></script> 
+<script language="javascript" src="scripts/shBrushPlain.js"></script> 
+<script language="javascript" src="scripts/shBrushBash.js"></script> 
+ 
+<link href="styles/reset.css" rel="stylesheet" type="text/css" />
+<link href="styles/shCore.css" rel="stylesheet" type="text/css" />
+<link type="text/css" rel="stylesheet" href="styles/shThemeRDark.css"/>
+<link href="styles/blog.css" rel="stylesheet" type="text/css" />
+
+</head>
+<body>
+
+<a href="index.html">Back to index</a>
+
+<h3 class="post-title">Groovy Goodness: Process Map Entries in Reverse</h3>
+
+<div class="post">
+<p>Since Groovy 1.7.2 we can loop through a <code>Map</code> in reverse with the <code>reverseEach()</code>. The order in which the content is processed is not guaranteed with a <code>Map</code>. If we use a <code>TreeMap</code> the natural ordering of the keys of the map is used.</p>
+<pre class="brush:groovy">
+def reversed = [:]
+[a: 1, c: 3, b: 2].reverseEach { key, value ->
+    reversed[key] = value ** 2
+}
+
+assert [b: 4, c: 9, a: 1] == reversed
+
+// TreeMap uses natural ordering of keys, so 
+// reverseEach starts with key 'c'.
+def tree = [a: 10, c: 30, b: 20] as TreeMap
+def reversedMap = [:]
+tree.reverseEach {
+    reversedMap[it.key] = it.value * 2
+}
+assert [c: 60, b: 40, a: 20] == reversedMap
+</pre
+</div>
+
+<script language="javascript"> 
+SyntaxHighlighter.config.bloggerMode = true;
+SyntaxHighlighter.config.clipboardSwf = 'scripts/clipboard.swf';
+SyntaxHighlighter.defaults['first-line'] = 0;
+SyntaxHighlighter.defaults['auto-links'] = false;
+SyntaxHighlighter.all();
+dp.SyntaxHighlighter.HighlightAll('code');
+</script>
+
+</body>
+</html>

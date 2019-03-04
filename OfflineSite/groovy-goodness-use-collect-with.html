@@ -1,0 +1,53 @@
+<html>
+<head>
+
+<title>Groovy Goodness: Use Collect with Initial Collection Value</title>
+
+<script language="javascript" src="scripts/shCore.js"></script> 
+<script language="javascript" src="scripts/shLegacy.js"></script> 
+<script language="javascript" src="scripts/shBrushJava.js"></script> 
+<script language="javascript" src="scripts/shBrushXml.js"></script> 
+<script language="javascript" src="scripts/shBrushJScript.js"></script> 
+<script language="javascript" src="scripts/shBrushGroovy.js"></script> 
+<script language="javascript" src="scripts/shBrushPlain.js"></script> 
+<script language="javascript" src="scripts/shBrushBash.js"></script> 
+ 
+<link href="styles/reset.css" rel="stylesheet" type="text/css" />
+<link href="styles/shCore.css" rel="stylesheet" type="text/css" />
+<link type="text/css" rel="stylesheet" href="styles/shThemeRDark.css"/>
+<link href="styles/blog.css" rel="stylesheet" type="text/css" />
+
+</head>
+<body>
+
+<a href="index.html">Back to index</a>
+
+<h3 class="post-title">Groovy Goodness: Use Collect with Initial Collection Value</h3>
+
+<div class="post">
+<p>The <code>collect()</code> method in Groovy can be used to iterate over collections and transform each element of the collection. The transformation is defined in as a closure and is passed to the <code>collect()</code> method. But we can also add an initial collection to which the transformed elements are added.</p>
+<pre class="brush:groovy">
+// Collect without 
+// initial collection.
+assert [0,2,4,6] == (0..3).collect { it * 2 }
+assert ['Groovy', 'Grails'] == [lang: 'Groovy', framework: 'Grails'].collect { it.value }
+
+// Collect with initial collection argument.
+assert [0, 1, 2, 3] == [2, 3].collect([0, 1]) { it }
+assert [0, 3, 6, 9] == [2, 3].collect([0, 3], { it * 3})
+assert ['Gradle', 'groovy', 'grails'] == ['Groovy', 'Grails'].collect(['Gradle']) { it.toLowerCase() }
+assert ['m','r','h','a','k','i'] == [4, -3, 7, 5].collect(['m', 'r']) { (it + 100) as char }
+</pre
+</div>
+
+<script language="javascript"> 
+SyntaxHighlighter.config.bloggerMode = true;
+SyntaxHighlighter.config.clipboardSwf = 'scripts/clipboard.swf';
+SyntaxHighlighter.defaults['first-line'] = 0;
+SyntaxHighlighter.defaults['auto-links'] = false;
+SyntaxHighlighter.all();
+dp.SyntaxHighlighter.HighlightAll('code');
+</script>
+
+</body>
+</html>

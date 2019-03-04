@@ -1,0 +1,57 @@
+<html>
+<head>
+
+<title>Groovy Goodness: Replace Characters in a String with CollectReplacements</title>
+
+<script language="javascript" src="scripts/shCore.js"></script> 
+<script language="javascript" src="scripts/shLegacy.js"></script> 
+<script language="javascript" src="scripts/shBrushJava.js"></script> 
+<script language="javascript" src="scripts/shBrushXml.js"></script> 
+<script language="javascript" src="scripts/shBrushJScript.js"></script> 
+<script language="javascript" src="scripts/shBrushGroovy.js"></script> 
+<script language="javascript" src="scripts/shBrushPlain.js"></script> 
+<script language="javascript" src="scripts/shBrushBash.js"></script> 
+ 
+<link href="styles/reset.css" rel="stylesheet" type="text/css" />
+<link href="styles/shCore.css" rel="stylesheet" type="text/css" />
+<link type="text/css" rel="stylesheet" href="styles/shThemeRDark.css"/>
+<link href="styles/blog.css" rel="stylesheet" type="text/css" />
+
+</head>
+<body>
+
+<a href="index.html">Back to index</a>
+
+<h3 class="post-title">Groovy Goodness: Replace Characters in a String with CollectReplacements</h3>
+
+<div class="post">
+<p>We can use the <code>collectReplacements(Closure)</code> method to replace characters in a <code>String</code>. We pass a closure to the method and the closure is invoked for each character in the <code>String</code> value. If we return <code>null</code> the character is not transformed, otherwise we can return the replacement character.</p><pre class="brush:groovy">def s = 'Gr00vy is gr8'
+
+def replacement = {
+    // Change 8 to eat
+    if (it == '8') {
+        'eat'
+    // Change 0 to o
+    } else if (it == '0') {
+        'o'
+    // Do not transform
+    } else {
+        null
+    }
+}
+
+assert s.collectReplacements(replacement) == 'Groovy is great'
+</pre><p>Code written with Groovy 2.1.6</p
+</div>
+
+<script language="javascript"> 
+SyntaxHighlighter.config.bloggerMode = true;
+SyntaxHighlighter.config.clipboardSwf = 'scripts/clipboard.swf';
+SyntaxHighlighter.defaults['first-line'] = 0;
+SyntaxHighlighter.defaults['auto-links'] = false;
+SyntaxHighlighter.all();
+dp.SyntaxHighlighter.HighlightAll('code');
+</script>
+
+</body>
+</html>

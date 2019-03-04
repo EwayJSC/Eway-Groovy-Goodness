@@ -1,0 +1,52 @@
+<html>
+<head>
+
+<title>Groovy Goodness: Text Translation</title>
+
+<script language="javascript" src="scripts/shCore.js"></script> 
+<script language="javascript" src="scripts/shLegacy.js"></script> 
+<script language="javascript" src="scripts/shBrushJava.js"></script> 
+<script language="javascript" src="scripts/shBrushXml.js"></script> 
+<script language="javascript" src="scripts/shBrushJScript.js"></script> 
+<script language="javascript" src="scripts/shBrushGroovy.js"></script> 
+<script language="javascript" src="scripts/shBrushPlain.js"></script> 
+<script language="javascript" src="scripts/shBrushBash.js"></script> 
+ 
+<link href="styles/reset.css" rel="stylesheet" type="text/css" />
+<link href="styles/shCore.css" rel="stylesheet" type="text/css" />
+<link type="text/css" rel="stylesheet" href="styles/shThemeRDark.css"/>
+<link href="styles/blog.css" rel="stylesheet" type="text/css" />
+
+</head>
+<body>
+
+<a href="index.html">Back to index</a>
+
+<h3 class="post-title">Groovy Goodness: Text Translation</h3>
+
+<div class="post">
+<p>In Groovy 1.7.3 the <code>tr()</code> method is added to the <code>String</code> class. With this method we can do translations in String values. We define a source set of characters that need to be replaced by a replacement set of characters. We can also use a regular expression style (remember it is not a real regular expression) to define a range of characters.</p>
+<p>If the replacement set is smaller than the source set, than the last character of the replacement set is used for the remaining source set characters.</p>
+<pre class="brush:groovy">
+// Source set and replacement set are equal size.
+assert 'I 10v3 9r00vy' == 'I love Groovy'.tr('loeG', '1039')
+
+// Regular expression style range
+assert 'mrHAKI' == 'mrhaki'.tr('a-k', 'A-K')
+
+// Replacement set is smaller than source set.
+assert 'Gr8888' == 'Groovy'.tr('ovy', '8')
+</pre
+</div>
+
+<script language="javascript"> 
+SyntaxHighlighter.config.bloggerMode = true;
+SyntaxHighlighter.config.clipboardSwf = 'scripts/clipboard.swf';
+SyntaxHighlighter.defaults['first-line'] = 0;
+SyntaxHighlighter.defaults['auto-links'] = false;
+SyntaxHighlighter.all();
+dp.SyntaxHighlighter.HighlightAll('code');
+</script>
+
+</body>
+</html>

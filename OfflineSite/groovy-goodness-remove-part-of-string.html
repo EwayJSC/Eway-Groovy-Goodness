@@ -1,0 +1,54 @@
+<html>
+<head>
+
+<title>Groovy Goodness: Remove Part of String With Regular Expression Pattern</title>
+
+<script language="javascript" src="scripts/shCore.js"></script> 
+<script language="javascript" src="scripts/shLegacy.js"></script> 
+<script language="javascript" src="scripts/shBrushJava.js"></script> 
+<script language="javascript" src="scripts/shBrushXml.js"></script> 
+<script language="javascript" src="scripts/shBrushJScript.js"></script> 
+<script language="javascript" src="scripts/shBrushGroovy.js"></script> 
+<script language="javascript" src="scripts/shBrushPlain.js"></script> 
+<script language="javascript" src="scripts/shBrushBash.js"></script> 
+ 
+<link href="styles/reset.css" rel="stylesheet" type="text/css" />
+<link href="styles/shCore.css" rel="stylesheet" type="text/css" />
+<link type="text/css" rel="stylesheet" href="styles/shThemeRDark.css"/>
+<link href="styles/blog.css" rel="stylesheet" type="text/css" />
+
+</head>
+<body>
+
+<a href="index.html">Back to index</a>
+
+<h3 class="post-title">Groovy Goodness: Remove Part of String With Regular Expression Pattern</h3>
+
+<div class="post">
+<p>Since Groovy 2.2 we can subtract a part of a String value using a regular expression pattern. The first match found is replaced with an empty String. In the following sample code we see how the first match of the pattern is removed from the String:</p><pre class="brush:groovy">// Define regex pattern to find words starting with gr (case-insensitive).
+def wordStartsWithGr = ~/(?i)\s+Gr\w+/
+
+assert ('Hello Groovy world!' - wordStartsWithGr) == 'Hello world!'
+assert ('Hi Grails users' - wordStartsWithGr) == 'Hi users'
+
+
+// Remove first match of a word with 5 characters.
+assert ('Remove first match of 5 letter word' - ~/\b\w{5}\b/) == 'Remove  match of 5 letter word'
+
+
+// Remove first found numbers followed by a whitespace character.
+assert ('Line contains 20 characters' - ~/\d+\s+/) == 'Line contains characters'
+</pre><p>Code written with Groovy 2.2.</p
+</div>
+
+<script language="javascript"> 
+SyntaxHighlighter.config.bloggerMode = true;
+SyntaxHighlighter.config.clipboardSwf = 'scripts/clipboard.swf';
+SyntaxHighlighter.defaults['first-line'] = 0;
+SyntaxHighlighter.defaults['auto-links'] = false;
+SyntaxHighlighter.all();
+dp.SyntaxHighlighter.HighlightAll('code');
+</script>
+
+</body>
+</html>
