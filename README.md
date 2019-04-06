@@ -4,10 +4,7 @@ Eway Groovy Goodness series is a subset which categorizes and filter best practi
 
 The directory `Blog/Posts` contains directories for each blog entry. The sample Groovy files are placed inside those directories.
 
-The directory `OfflineSite` contains the articles from the blog as local HTML files. If we open the file `index.hmtl` we can start browsing through the blog posts.
+The directory `OfflineSite` contains the articles from the blog as local HTML files. If we open the file `index.html` we can start browsing through the blog posts.
 
 # Author and Origin
 The samples are written by [mrhaki](http://www.mrhaki.com) who's real name is Hubert Klein Ikkink. 
-
-
-
